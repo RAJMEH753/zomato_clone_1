@@ -1,0 +1,36 @@
+[{
+  "_id": "3",
+  "name": "Dinner",
+  "content": "Start your day with exclusive Dinner options",
+  "image": "3.png"
+},
+{
+  "_id": "2",
+  "name": "Lunch",
+  "content": "Start your day with exclusive Lunch options",
+  "image": "2.png"
+},
+{
+  "_id": "5",
+  "name": "Drink",
+  "content": "Start your day with exclusive Drinks options",
+  "image": "5.png"
+},
+{
+  "_id": "6",
+  "name": "NightLife",
+  "content": "Start your day with exclusive NightLife options",
+  "image": "6.png"
+},
+{
+  "_id": "4",
+  "name": "Snacks",
+  "content": "Start your day with exclusive Snacks options",
+  "image": "4.png"
+},
+{
+  "_id": "1",
+  "name": "Breakfast",
+  "content": "Start your day with exclusive breakfast options",
+  "image": "1.png"
+}]

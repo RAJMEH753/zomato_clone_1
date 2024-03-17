@@ -1,0 +1,165 @@
+[{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2f0"
+  },
+  "name": "Cheese Pizza",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b92",
+  "image": "5.png",
+  "qty": 0,
+  "price": "199"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2f3"
+  },
+  "name": "Chicken Bucket 4 Pcs",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b90",
+  "image": "3.png",
+  "qty": 0,
+  "price": "399"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2f5"
+  },
+  "name": "Veg Cheese Burger",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b92",
+  "image": "3.png",
+  "qty": 0,
+  "price": "99"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2f2"
+  },
+  "name": "Chicken Bucket 8 Pcs",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b8d",
+  "image": "3.png",
+  "qty": 0,
+  "price": "799"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2f4"
+  },
+  "name": "Chicken Bucket 16 Pcs",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b8f",
+  "image": "3.png",
+  "qty": 0,
+  "price": "999"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2ee"
+  },
+  "name": "Butter Chicken ",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b96",
+  "image": "4.png",
+  "qty": 0,
+  "price": "420"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2f6"
+  },
+  "name": "Chicken Burger",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b8d",
+  "image": "3.png",
+  "qty": 0,
+  "price": "149"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2ef"
+  },
+  "name": "Margerita",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b8e",
+  "image": "5.png",
+  "qty": 0,
+  "price": "299"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2ed"
+  },
+  "name": "Butter Paneer",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b91",
+  "image": "1.png",
+  "qty": 0,
+  "price": "230"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2f1"
+  },
+  "name": "Evergreen Chicken Pizza",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b96",
+  "image": "5.png",
+  "qty": 0,
+  "price": "265"
+},
+{
+  "_id": {
+    "$oid": "635d182983b8d19716dff2ec"
+  },
+  "name": "Kadhai Paneer",
+  "description": "Made with paneer and some quick spicy content like chilly and flakes.",
+  "ingridients": [
+    "Paneer",
+    "Tomato"
+  ],
+  "restaurantId": "64159c66f661c76ca6129b92",
+  "image": "1.png",
+  "qty": 0,
+  "price": "200"
+}]

@@ -1,0 +1,40 @@
+REACT JS    - Frontend
+    - SPA (Single Page Application)
+    - VDOM (Virtual Document Object Model) : Diffy's Algorithm
+    - React only runs on PORT number 3000.
+
+    Installation Steps:
+        1. Select a folder in your system. 
+            (Note:- a. Do not select a folder present in your program files.
+                    b. Do not select within the backend folder.)
+
+        2. Create a folder with a name.
+        3. Inside the folder:
+            -> On the URL/ or the address bar type upon CMD.
+                                OR
+            -> Select that folder in VS Code.
+            -> Then start the terminal.
+
+        4. Type upon:
+            -> npm install create-react-app -g
+            -> npx create-react-app <project_name>
+
+    Lifecycle of REACT js: 3phases
+        1. Mounting Phase:  Initial mount to the DOM
+                > Contructors
+                > Render
+                > ComponentDidMount - Calling of the APIs to bind the data
+
+        2. Updating Phase:  User Interaction
+                > Render
+
+        3. Unmounting Phase:    Component gets unmounted from the DOM
+                > ComponentDidMount - Store the data at Local Storage or Session Storage
+
+    
+    Things to check while converting HTML page to REACT:
+        -> Comments in HTML <!-- --> needs to be changed by {/*  */}
+        -> In react all tags must be closed. (in case of self closing tags must be closed like -> <img />)
+        -> In react inline style needs to be written inside {{ }} - double curly brackets.
+        -> In HTML class needs to be replaced by className.
+        -> In React all the variables are written inside " " - double Qoutes.

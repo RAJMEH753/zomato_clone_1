@@ -1,6 +1,12 @@
 import React from "react";
+import navHook from "./nav";
 
 class QuickSearch extends React.Component{
+
+    showFilter = (ss) => {
+        this.props.navigate(`/filter?mealtype=${ss}`);
+    }
+
     render(){
         const { mealtypeData } = this.props;
         // console.log(mealtypeData)
@@ -25,7 +31,7 @@ class QuickSearch extends React.Component{
                         {
                             mealtypeData?.map((meal) => {
                                 return(
-                                    <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}}>
+                                    <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}} onClick={() => this.showFilter(meal._id)}>
                                         <div class="l-box">
                                             <img src={`./images/${meal.image}`} alt="images_mealtype" class="img-fluid img-qs" />
                                         </div>
@@ -46,4 +52,4 @@ class QuickSearch extends React.Component{
     }
 }
 
-export default QuickSearch;
+export default navHook(QuickSearch);

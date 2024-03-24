@@ -2,3 +2,88 @@
     height: 20rem;
     width: 100%;
 }
+
+.bannerCover {
+    margin-top: 2rem;
+}
+
+.heading {
+    color: #192F60;
+}
+
+.order_button {
+    float: right;
+    margin: -16px 20px 0px 0px;
+}
+
+.tabs {
+    min-height: 200px;
+    position: relative;
+    background: white;
+    margin: 50px 0px 30px 5px;
+    clear: both;
+}
+
+.tab {
+    float: left;
+}
+
+.tab label {
+    margin-left: 10px;
+    position: relative;
+    left: 8px;
+    top: -22px;
+}
+
+.tab [type=radio] {
+    display: none;
+}
+
+.content {
+    position: absolute;
+    left: 0;
+    border-top: 2px solid #D2D9E6;
+    top: 3px;
+    right: 0;
+    bottom: 0;
+    padding: 22px;
+    opacity: 0;
+}
+
+.tabs [type=radio]:checked~label {
+    background: white;
+    z-index: 0;
+    border-bottom: 3px solid red;
+}
+
+.tabs [type=radio]:checked~label~.content {
+    z-index: 0;
+    opacity: 1;
+}
+
+.about {
+    font-size: 18px;
+    font-weight: 900;
+    color: #192F60;
+    height: 50px;
+}
+
+.head {
+    font-size: 15px;
+    font-weight: 900;
+    color: #192F60;
+    height: 20px;
+}
+
+.value {
+    font-size: 15px;
+    color: #192F60;
+    height: 40px;
+}
+
+.value-red {
+    font-size: 15px;
+    color: red;
+    height: 40px;
+    margin-top: -20px;
+}

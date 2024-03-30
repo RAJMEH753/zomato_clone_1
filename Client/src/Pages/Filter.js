@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import queryString from "query-string";
+import navHook from "./nav";
 import '../Style/filterPage.css';
 
 class Filter extends React.Component{
@@ -7,12 +9,34 @@ class Filter extends React.Component{
         super();
         this.state ={
             loc: [],
-            restaurant: []
-
+            restaurant: [],
+            Cuisine: [],
+            sort: 1, 
+            page: 1
         }
     }
 
-    componentDidMount(){
+    // Post mealtype API
+    componentDidMount() {
+        const q = queryString.parse(window.location.search);
+        const { mealtype } = q;
+        const int = parseInt(mealtype);
+        
+        const filterObj = {
+            mealtype: int
+        }
+
+        axios({
+            url: 'http://localhost:5500/filter',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/JSON'},
+            data: filterObj
+        })
+        .then( res => {
+            this.setState({ restaurant: res.data.restaurants, mealtype: int })
+        })
+        .catch((err => console.log(err)))
+
         // GET location API
         axios({
             url: 'http://localhost:5500/location',
@@ -27,13 +51,17 @@ class Filter extends React.Component{
 
     // POST location API
     handleLocation = (val) => {
-        const { lcost, hcost } = this.state;
+        const { lcost, hcost, Cuisine, sort, page, mealtype } = this.state;
         const loca = val.target.value;
         
         const filterObj = {
             location: loca,
             lcost,
-            hcost
+            hcost,
+            Cuisine,
+            sort, 
+            page,
+            mealtype
         }
 
         axios({
@@ -49,13 +77,52 @@ class Filter extends React.Component{
 
     }
 
+    // handle Cuisine
+    handleCuisine = (i) => {
+        const { loca, lcost, hcost, sort, page, mealtype } = this.state;
+
+        let tempCuisine = this.state.Cuisine.slice();
+
+        if(tempCuisine.indexOf(i) === -1) {
+            tempCuisine.push(i);
+        }else{
+            tempCuisine.splice(tempCuisine.indexOf(i),1);
+        }
+
+        const filterObj = {
+            location: loca,
+            lcost,
+            hcost,
+            cuisine: tempCuisine.length > 0 ? tempCuisine : undefined,
+            sort, 
+            page, 
+            mealtype
+        }
+
+        axios({
+            url: 'http://localhost:5500/filter',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/JSON'},
+            data: filterObj
+        })
+        .then( res => {
+            this.setState({ restaurant: res.data.restaurants, Cuisine: tempCuisine })
+        })
+        .catch((err => console.log(err)))
+    }
+
+    // handle Cost
     handleCost = (lcost, hcost) => {
-        const { loca } = this.state;
+        const { loca, Cuisine, sort, page, mealtype } = this.state;
         
         const filterObj = {
             location: loca,
             lcost,
-            hcost
+            hcost,
+            Cuisine,
+            sort, 
+            page, 
+            mealtype
         }
 
         axios({
@@ -69,6 +136,64 @@ class Filter extends React.Component{
         })
         .catch((err => console.log(err)))
 
+    }
+
+    // handle Sort
+    handleSort = (sort) => {
+
+        const { loca, Cuisine, lcost, hcost, page, mealtype } = this.state;
+        
+        const filterObj = {
+            location: loca,
+            lcost,
+            hcost,
+            Cuisine,
+            sort, 
+            page, 
+            mealtype
+        }
+
+        axios({
+            url: 'http://localhost:5500/filter',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/JSON'},
+            data: filterObj
+        })
+        .then( res => {
+            this.setState({ restaurant: res.data.restaurants, sort })
+        })
+        .catch((err => console.log(err)))
+    }
+
+    // handle Page
+    handlePage = (page) => {
+        const { loca, Cuisine, lcost, hcost, sort, mealtype } = this.state;
+        
+        const filterObj = {
+            location: loca,
+            lcost,
+            hcost,
+            Cuisine,
+            sort,
+            page, 
+            mealtype
+        }
+
+        axios({
+            url: 'http://localhost:5500/filter',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/JSON'},
+            data: filterObj
+        })
+        .then( res => {
+            this.setState({ restaurant: res.data.restaurants, page })
+        })
+        .catch((err => console.log(err)))
+    }
+
+    // Navigate
+    handleNavigate= (ss) => {
+        this.props.navigate(`/details?restuarant=${ss}`);
     }
 
     render(){
@@ -103,7 +228,7 @@ class Filter extends React.Component{
                         <select class="form-control selectLocation" onChange={this.handleLocation}>
                             <option value="0" disabled selected>Select Location</option>
                             {
-                                        loc?.map((item) => {
+                                        loc.map((item) => {
                                             return(
                                                 <option value={item.city_id}>{item.name}</option>
                                             )
@@ -129,8 +254,10 @@ class Filter extends React.Component{
 
                         <h5 class="filter-heading mt-4">Sort</h5>
 
-                        <input type="radio" id="ltoh" name="Sort" value="Price low to high" /> <label for="ltoh" class="filter-content">Price low to high</label> <br />
-                        <input type="radio" id="htol" name="Sort" value="Price high to low" /> <label for="htol" class="filter-content">Price high to low</label> <br />
+                        <input type="radio" id="ltoh" name="Sort" value="Price low to high" onClick={() => this.handleSort(1)} /> 
+                            <label for="ltoh" class="filter-content">Price low to high</label> <br />
+                        <input type="radio" id="htol" name="Sort" value="Price high to low" onClick={() => this.handleSort(-1)} /> 
+                            <label for="htol" class="filter-content">Price high to low</label> <br />
 
                     </div>
 
@@ -138,10 +265,11 @@ class Filter extends React.Component{
                     <div class="result-box mt-2">
                         
                         {/* <!-- Result --> */}
-                        { restaurant.map((res) => {
+                        { restaurant.length != 0 ?
+                            restaurant.map((res) => {
 
                             return(
-                                <div class="results">
+                                <div class="results" onClick={() => this.handleNavigate(res._id)}>
                                     <div class="d-flex">
                                         <div class="lt-box">
                                             <img src={res.thumb} alt="picture" class="img-fluid img-qs" />
@@ -167,7 +295,7 @@ class Filter extends React.Component{
                                     </div>
                                 </div>
                             )
-                        })}
+                        }) : <div> Sorry, No Results found... </div>} 
 
 
                         {/* <!--Pagination--> */}
@@ -178,11 +306,21 @@ class Filter extends React.Component{
                                         <span> { '<' } </span>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" onClick={() => this.handlePage(1)} > 1 </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" onClick={() => this.handlePage(2)}>2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" onClick={() => this.handlePage(3)}>3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" onClick={() => this.handlePage(4)}>4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" onClick={() => this.handlePage(5)}>5</a>
+                                </li>
                                 <li class="page-item">
                                     <a class="page-link" href="#">
                                     <span> { '>' } </span>
@@ -197,4 +335,4 @@ class Filter extends React.Component{
     }
 }
 
-export default Filter;
+export default navHook(Filter);

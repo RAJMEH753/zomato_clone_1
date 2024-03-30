@@ -87,3 +87,25 @@
     height: 40px;
     margin-top: -20px;
 }
+
+.gallery_button {
+    float: right;
+    position: relative;
+    top: -55px;
+    right: 35px;
+    color: #192F60;
+    background-color: #ffffffb8;
+    border: none;
+    padding: 5px;
+    width: 15em;
+    font-weight: 700;
+}
+
+.gallery_img {
+    height: 28em;
+}
+
+.close{
+    float: right;
+    font-weight: 800;
+}

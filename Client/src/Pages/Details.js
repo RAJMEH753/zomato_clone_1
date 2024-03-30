@@ -1,14 +1,32 @@
 import React from "react";
 import axios from "axios";
 import queryString from "query-string";
+import Modal from 'react-modal';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import '../Style/detailPage.css';
+
+const customStyles = {
+    overlay:{
+        backgroundColor: "rgba(0,0,0,0.8)"
+    },
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+};
 
 class Details extends React.Component{
     constructor(){
         super();
         this.state = {
             restaurant: [],
-            resId: undefined
+            resId: undefined,
+            galleryModal: false
         }
     }
 
@@ -28,8 +46,13 @@ class Details extends React.Component{
         .catch((err => console.log(err)))
     }
 
+    // For Modal
+    handleModal = (state, value) => {
+        this.setState({ [state]: value });
+    }
+
     render(){
-        const { restaurant } = this.state;
+        const { restaurant, galleryModal } = this.state;
         return(
             <div>
                 {/* <!--Navbar--> */}
@@ -48,6 +71,7 @@ class Details extends React.Component{
                 <div className="container">
                     <div className="bannerCover">
                         <img src={restaurant.thumb} className="banner" />
+                        <input type="button" value="Click to see Image Gallery" className="gallery_button" onClick={() => this.handleModal('galleryModal', true)} />
                     </div>
 
                     <h2 className="heading mt-4">{restaurant.name}</h2>
@@ -92,6 +116,20 @@ class Details extends React.Component{
                     </div>
                 </div>
                 
+                <Modal
+                    isOpen={galleryModal}
+                    style={customStyles}
+                >
+                    <div onClick={() => this.handleModal('galleryModal', false)} className="close"><i class="bi bi-x-lg"></i></div>
+                    <div>
+                        <Carousel showIndicators={false} showThumbs={false} showStatus={false}>
+                            <div>
+                                <img src={restaurant.thumb} className="gallery_img" />
+                            </div>
+                        </Carousel>
+                    </div>
+                </Modal>
+
             </div>
         )
     }

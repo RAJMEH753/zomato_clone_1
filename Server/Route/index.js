@@ -19,6 +19,6 @@ route.get('/menu/:resId', menuController.getMenuByRestaurantId);            // D
 // FILTER
 route.get('/restaurant', restaurantController.getRestaurant);               // List of Restaurants API
 route.post('/filter', restaurantController.filteredRestaurant);
-route.get('/meal/:mealId', mealtypeController.getMealtypeById);              // Filter - Get Mealtype by Id API
+route.get('/meal/:mealId', mealtypeController.getMealtypeById);             // Filter - Get Mealtype by Id API
 
 module.exports = route;

@@ -197,7 +197,7 @@ class Details extends React.Component{
                                             <div className="item_quantity_button">
                                                 <button  onClick={() => this.addItems(index, 'sub')}> - </button>
                                                 <span className="qty"> {item.qty} </span>
-                                                <button onClick={() => this.addItems(index, 'add')}> + </button>
+                                                <button onClick={() => this.addItems(index, 'add')} style={{color: '#61B246'}}> + </button>
                                             </div>
                                         }
                                         
@@ -233,7 +233,8 @@ class Details extends React.Component{
                         <input type="text" placeholder="Enter mobile number" style={{ width: '100%'}} className="form-control" id="mobile" />
 
                         <label htmlFor="address" style={{ marginTop: '10px' }}>Address</label>
-                        <input type="text" placeholder="Enter your address" style={{ width: '100%'}} className="form-control" id="address" />
+                        <textarea type="text" rows="4" placeholder="Enter your address" style={{ width: '100%'}} className="form-control" id="address">
+                        </textarea>
 
                         <button className="btn btn-success" style={{ float: "right", marginTop: "18px" }}>Proceed</button>
                     </div>

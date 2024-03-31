@@ -26,7 +26,10 @@ class Details extends React.Component{
         this.state = {
             restaurant: [],
             resId: undefined,
-            galleryModal: false
+            galleryModal: false,
+            menuModal: false,
+            menu: [],
+            formModal: false
         }
     }
 
@@ -48,11 +51,45 @@ class Details extends React.Component{
 
     // For Modal
     handleModal = (state, value) => {
+        const {resId} = this.state;
+
+        if(state == "menuModal" && value == true){
+            axios({
+                url: `http://localhost:5500/menu/${resId}`,
+                method: 'get',
+                headers: { 'Content-Type': 'application/JSON'}
+            })
+            .then( res => {
+                this.setState({ menu: res.data.menuItem })
+            })
+            .catch((err => console.log(err)))
+        }
+
         this.setState({ [state]: value });
     }
 
+    // Adding number of elements
+    addItems = (index, operationType) => {
+        var total = 0;
+        const items = [...this.state.menu];
+        const item = items[index];
+
+        if(operationType == 'add'){
+            item.qty += 1;
+        } else {
+            item.qty -= 1;
+        }
+
+        items[index] = item;
+
+        items.map((x) => {
+            total += x.qty * x.price;
+        })
+        this.setState({ menu: items, subtotal: total })
+    }
+
     render(){
-        const { restaurant, galleryModal } = this.state;
+        const { restaurant, galleryModal, menuModal, menu, subtotal, formModal } = this.state;
         return(
             <div>
                 {/* <!--Navbar--> */}
@@ -77,7 +114,7 @@ class Details extends React.Component{
                     <h2 className="heading mt-4">{restaurant.name}</h2>
 
                     <div>
-                        <input type="button" className="btn btn-danger order_button" value="Place Online Order" />
+                        <input type="button" className="btn btn-danger order_button" value="Place Online Order" onClick={() => this.handleModal('menuModal', true)} />
                     </div>
 
                     {/* TABS */}
@@ -127,6 +164,78 @@ class Details extends React.Component{
                                 <img src={restaurant.thumb} className="gallery_img" />
                             </div>
                         </Carousel>
+                    </div>
+                </Modal>
+
+                <Modal
+                    isOpen={menuModal}
+                    style={customStyles}
+                >
+                    <div onClick={() => this.handleModal('menuModal', false)} className="close"><i class="bi bi-x-lg"></i></div>
+                    <div>
+                        <h3 className="menu_restaurant_name">{restaurant.name}</h3>
+
+                        {/* Menu Item */}
+                        { menu?.map((item, index) => {
+                            console.log(item)
+                            return(
+                                
+                                <div className="menu">
+                                    <div className="menu_body">
+                                        <h5 className="font_weight">{item.name}</h5>
+                                        <h5 className="font_weight">₹ {item.price}</h5>
+                                        <p className="item_details">{item.description}</p>
+                                    </div>
+
+                                    <div className="menu_image">
+                                        <img className="item_image" src={`./images/${item.image}`} alt="food" />
+                                        
+                                        {
+                                            item.qty == 0 ? <div className="item_quantity_button" onClick={() => this.addItems(index, 'add')}>
+                                                ADD
+                                            </div> :
+                                            <div className="item_quantity_button">
+                                                <button  onClick={() => this.addItems(index, 'sub')}> - </button>
+                                                <span className="qty"> {item.qty} </span>
+                                                <button onClick={() => this.addItems(index, 'add')}> + </button>
+                                            </div>
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        
+
+                        {/* Payment Details */}
+                        <div className="payment">
+                            <h4 className="total font_weight">Subtotal: ₹ {subtotal}</h4>
+                            <button className="btn btn-danger payment_button" onClick={() => {this.handleModal('menuModal', false); this.handleModal('formModal', true);}}>
+                                Pay Now
+                            </button>
+                        </div>
+
+                    </div>
+                </Modal>
+
+                <Modal
+                    isOpen={formModal}
+                    style={customStyles}
+                >
+                    <div onClick={() => this.handleModal('formModal', false)} className="close"><i class="bi bi-x-lg"></i></div>
+                    <div style={{ width: '20em' }}>
+                        <h3 className="menu_restaurant_name">{restaurant.name}</h3>
+
+                        <label htmlFor="name" style={{ marginTop: '10px' }}>Name</label>
+                        <input type="text" placeholder="Enter your name" style={{ width: '100%'}} className="form-control" id="name" />
+
+                        <label htmlFor="mobile" style={{ marginTop: '10px' }}>Mobile Number</label>
+                        <input type="text" placeholder="Enter mobile number" style={{ width: '100%'}} className="form-control" id="mobile" />
+
+                        <label htmlFor="address" style={{ marginTop: '10px' }}>Address</label>
+                        <input type="text" placeholder="Enter your address" style={{ width: '100%'}} className="form-control" id="address" />
+
+                        <button className="btn btn-success" style={{ float: "right", marginTop: "18px" }}>Proceed</button>
                     </div>
                 </Modal>
 

@@ -7,7 +7,7 @@ exports.getMenuByRestaurantId = (req, res) => {
         .then(response => {
             res.status(200).json({
                 message: "Menu Fetched Successfully By Restaurant Id",
-                restaurant: response
+                menuItem: response
             })
         })
         .catch(err => {

@@ -12,7 +12,8 @@ class Filter extends React.Component{
             restaurant: [],
             Cuisine: [],
             sort: 1, 
-            page: 1
+            page: 1,
+            mealt: []
         }
     }
 
@@ -34,6 +35,17 @@ class Filter extends React.Component{
         })
         .then( res => {
             this.setState({ restaurant: res.data.restaurants, mealtype: int })
+        })
+        .catch((err => console.log(err)))
+
+        // Mealtype
+        axios({
+            url: `http://localhost:5500/meal/${int}`,
+            method: 'GET',
+            headers: { 'Content-Type': 'application/JSON'}
+        })
+        .then( res => {
+            this.setState({ mealt: res.data.mealtype })
         })
         .catch((err => console.log(err)))
 
@@ -198,7 +210,7 @@ class Filter extends React.Component{
 
     render(){
         
-        const { loc, restaurant } = this.state;
+        const { loc, restaurant, mealt } = this.state;
 
         return(
             <div>
@@ -217,7 +229,7 @@ class Filter extends React.Component{
 
                 {/* <!--Filter Page--> */}
                 <div class="container mb-5">
-                    <h2 class="filter-heading mt-3">Breakfast Places in Mumbai</h2>
+                    <h2 class="filter-heading mt-3">{mealt.name} Places in Mumbai</h2>
 
                     {/* <!--Filters--> */}
                     <div class="filter-box mt-2 pb-4">

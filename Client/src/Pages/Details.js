@@ -88,6 +88,44 @@ class Details extends React.Component{
         this.setState({ menu: items, subtotal: total })
     }
 
+    // Payment
+    initPayment = (data) => {
+        const options = {
+            key: "rzp_test_UI77aZ9xCX3yQ7",
+            amount: data.amount,
+            currency: data.currency,
+            description: "Test Transaction",
+            order_id: data.id,
+
+            handler: async(response) => {
+                try{
+                    
+                    const verifyLink = "http://localhost:5500/api/payment/verify";
+                    const {data} = await axios.post(verifyLink, response);
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        };
+        const rzp = new window.Razorpay(options);
+        rzp.open();
+    }
+
+    handlePayment = async() => {
+        const { subtotal } = this.state;
+
+        try{
+            const orderLink = "http://localhost:5500/api/payment/orders";
+            const { data } = await axios.post(orderLink, { amount: subtotal });
+
+            this.initPayment(data.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     render(){
         const { restaurant, galleryModal, menuModal, menu, subtotal, formModal } = this.state;
         return(
@@ -177,7 +215,7 @@ class Details extends React.Component{
 
                         {/* Menu Item */}
                         { menu?.map((item, index) => {
-                            console.log(item)
+                            // console.log(item)
                             return(
                                 
                                 <div className="menu">
@@ -236,7 +274,7 @@ class Details extends React.Component{
                         <textarea type="text" rows="4" placeholder="Enter your address" style={{ width: '100%'}} className="form-control" id="address">
                         </textarea>
 
-                        <button className="btn btn-success" style={{ float: "right", marginTop: "18px" }}>Proceed</button>
+                        <button className="btn btn-success" style={{ float: "right", marginTop: "18px" }} onClick={this.handlePayment}>Proceed</button>
                     </div>
                 </Modal>
 

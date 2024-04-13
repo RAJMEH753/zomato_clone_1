@@ -81,12 +81,12 @@ class Banner extends React.Component{
 
                 <div class="bg-cover bg-image d-flex">
                     <div class="container mt-3">
-                        <div class="row">
+                        {/* <div class="row">
                             <div class="col text-end">
                                 <button type="button" class="btn btn-outline-light">Login</button>
                                 <button type="button" class="btn btn-outline-light">Create an account</button>
                             </div>
-                        </div>
+                        </div> */}
                         <div class="row mt-5">
                             <div class="col d-flex justify-content-center">
                                 <div class="text-danger circle">

@@ -220,10 +220,10 @@ class Filter extends React.Component{
                         <div class="navbar-brand text-danger circle">
                             <h2 class="logo">e!</h2>
                         </div>
-                        <form class="d-flex nav-form">
+                        {/* <form class="d-flex nav-form">
                             <button type="button" class="btn btn-danger">Login</button>
                             <button type="button" class="btn btn-outline-light">Create an account</button>
-                        </form>
+                        </form> */}
                     </div>
                 </nav>
 

@@ -7,7 +7,8 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 
 const PORT = 5500;
-const HOSTNAME = "localhost";
+// const HOSTNAME = "localhost";
+const HOSTNAME = process.env.HOST_URL;
 const paymentRoute = require("./Controller/payment");
 const authRoute = require("./Controller/auth");
 const passportSetup = require("./Controller/passport");

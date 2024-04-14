@@ -8,7 +8,7 @@ const cookieSession = require("cookie-session");
 
 const PORT = 5500;
 // const HOSTNAME = "localhost";
-const HOSTNAME = process.env.HOST_URL;
+// const HOSTNAME = process.env.HOST_URL;
 const paymentRoute = require("./Controller/payment");
 const authRoute = require("./Controller/auth");
 const passportSetup = require("./Controller/passport");
@@ -42,8 +42,8 @@ mongoose.connect(MongoAtlas, {
     // useUnifiedTopology: true
 })
     .then(res => {
-        app.listen(PORT, HOSTNAME, () => {
-            console.log(`Server is running at ${HOSTNAME}: ${PORT}`)
+        app.listen(PORT, () => {
+            console.log(`Server is running at ${PORT}`)
         });
     })
     .catch(err => console.log(err));

@@ -13,7 +13,7 @@ const authRoute = require("./Controller/auth");
 const passportSetup = require("./Controller/passport");
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.REACT_URL,
     credentials: true,
     optionSuccessStatus: 200
 }
@@ -34,7 +34,7 @@ app.use('/api/payment/', paymentRoute);
 app.use('/auth', authRoute);
 
 // DB
-const MongoAtlas = "mongodb+srv://admin:RDjBkS9LOJASnaXQ@zomato-clone-80.mpz4sy2.mongodb.net/Zomato-80?retryWrites=true&w=majority&appName=zomato-clone-80";
+const MongoAtlas = = process.env.MONGO_URL
 
 mongoose.connect(MongoAtlas, {
     // useNewUrlParser: true,

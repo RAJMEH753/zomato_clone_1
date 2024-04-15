@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Home from "./home";
 import Filter from './Filter';
 import Details from './Details';
 import Header from './Header';
 import { useEffect, useState } from 'react';
+const BASE_URL = window.env.REACT_APP_BASE_URL;
 
 const Router = () => {
 
@@ -12,7 +12,7 @@ const Router = () => {
 
     useEffect(() => {
         const getUser = () => {
-            fetch("http://localhost:5500/auth/login/success", {
+            fetch(`${BASE_URL}/auth/login/success`, {
                 method: "GET",
                 credentials: "include",
                 headers: {

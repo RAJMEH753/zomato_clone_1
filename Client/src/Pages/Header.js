@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from 'react-modal';
+const BASE_URL = window.env.REACT_APP_BASE_URL;
 
 const customStyles = {
     overlay:{
@@ -29,11 +30,11 @@ class Header extends React.Component{
     }
 
     google = () => {
-        window.open("http://localhost:5500/auth/google", "_self");
+        window.open(`${BASE_URL}/auth/google`, "_self");
     }
 
     logout = () => {
-        window.open("http://localhost:5500/auth/logout", "_self");
+        window.open(`${BASE_URL}/auth/logout`, "_self");
     }
 
     render(){
@@ -51,7 +52,7 @@ class Header extends React.Component{
                             </form>
                         ) : (
                             <form class="d-flex nav-form">
-                                <img src={user.photos[0].value} className="circle" />
+                                <img src={user.photos[0].value} className="circle" alt=" " />
                                 <p className="text-white m-3">{user.displayName}</p>
                                 <button type="button" class="btn btn-outline-light " onClick={this.logout}>Logout</button>
                             </form>

@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import '../Style/detailPage.css';
+const BASE_URL = window.env.REACT_APP_BASE_URL;
 
 const customStyles = {
     overlay:{
@@ -39,7 +40,7 @@ class Details extends React.Component{
         //console.log(restuarant);
 
         axios({
-            url: `http://localhost:5500/restaurants/${restuarant}`,
+            url: `${BASE_URL}/restaurants/${restuarant}`,
             method: 'get',
             headers: { 'Content-Type': 'application/JSON'}
         })
@@ -53,9 +54,9 @@ class Details extends React.Component{
     handleModal = (state, value) => {
         const {resId} = this.state;
 
-        if(state == "menuModal" && value == true){
+        if(state === "menuModal" && value === true){
             axios({
-                url: `http://localhost:5500/menu/${resId}`,
+                url: `${BASE_URL}/menu/${resId}`,
                 method: 'get',
                 headers: { 'Content-Type': 'application/JSON'}
             })
@@ -74,7 +75,7 @@ class Details extends React.Component{
         const items = [...this.state.menu];
         const item = items[index];
 
-        if(operationType == 'add'){
+        if(operationType === 'add'){
             item.qty += 1;
         } else {
             item.qty -= 1;
@@ -100,7 +101,7 @@ class Details extends React.Component{
             handler: async(response) => {
                 try{
                     
-                    const verifyLink = "http://localhost:5500/api/payment/verify";
+                    const verifyLink = `${BASE_URL}/api/payment/verify`;
                     const {data} = await axios.post(verifyLink, response);
 
                 } catch (error) {
@@ -116,7 +117,7 @@ class Details extends React.Component{
         const { subtotal } = this.state;
 
         try{
-            const orderLink = "http://localhost:5500/api/payment/orders";
+            const orderLink = `${BASE_URL}/api/payment/orders`;
             const { data } = await axios.post(orderLink, { amount: subtotal });
 
             this.initPayment(data.data);
@@ -145,7 +146,7 @@ class Details extends React.Component{
 
                 <div className="container">
                     <div className="bannerCover">
-                        <img src={restaurant.thumb} className="banner" />
+                        <img src={restaurant.thumb} className="banner" alt=" " />
                         <input type="button" value="Click to see Image Gallery" className="gallery_button" onClick={() => this.handleModal('galleryModal', true)} />
                     </div>
 
@@ -199,7 +200,7 @@ class Details extends React.Component{
                     <div>
                         <Carousel showIndicators={false} showThumbs={false} showStatus={false}>
                             <div>
-                                <img src={restaurant.thumb} className="gallery_img" />
+                                <img src={restaurant.thumb} className="gallery_img" alt=" " />
                             </div>
                         </Carousel>
                     </div>
@@ -229,7 +230,7 @@ class Details extends React.Component{
                                         <img className="item_image" src={`./images/${item.image}`} alt="food" />
                                         
                                         {
-                                            item.qty == 0 ? <div className="item_quantity_button" onClick={() => this.addItems(index, 'add')}>
+                                            item.qty === 0 ? <div className="item_quantity_button" onClick={() => this.addItems(index, 'add')}>
                                                 ADD
                                             </div> :
                                             <div className="item_quantity_button">
@@ -247,7 +248,13 @@ class Details extends React.Component{
 
                         {/* Payment Details */}
                         <div className="payment">
-                            <h4 className="total font_weight">Subtotal: ₹ {subtotal}</h4>
+                            { 
+                                subtotal === undefined ? 
+                                    <h4 className="total font_weight">Subtotal: ₹ 0 </h4>
+                                    : <h4 className="total font_weight">Subtotal: ₹ {subtotal}</h4>
+
+                            }
+                            
                             <button className="btn btn-danger payment_button" onClick={() => {this.handleModal('menuModal', false); this.handleModal('formModal', true);}}>
                                 Pay Now
                             </button>

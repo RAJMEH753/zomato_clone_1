@@ -3,6 +3,7 @@ import '../Style/frontPage.css';    // importing the CSS
 import Banner from './Banner';
 import QuickSearch from "./QuickSearch";
 import axios from "axios";
+const BASE_URL = window.env.REACT_APP_BASE_URL;
 
 class Homepage extends React.Component{
     constructor(){
@@ -16,7 +17,7 @@ class Homepage extends React.Component{
     componentDidMount(){
         // location API
         axios({
-            url: 'http://localhost:5500/location',
+            url: `${BASE_URL}/location`,
             method: 'get',
             headers: { 'Content-Type': 'application/JSON'}
         })
@@ -27,7 +28,7 @@ class Homepage extends React.Component{
 
         // Mealtype API
         axios({
-            url: 'http://localhost:5500/mealtype',
+            url: `${BASE_URL}/mealtype`,
             method: 'get',
             headers: { 'Content-Type': 'application/JSON'}
         })

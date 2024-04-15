@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import navHook from "./nav";
+const BASE_URL = window.env.REACT_APP_BASE_URL;
 
 class Banner extends React.Component{
     constructor(){
@@ -8,16 +9,16 @@ class Banner extends React.Component{
         this.state ={
             restaurant: [],
             inputText: undefined, 
-            suggestion: []
+            suggestion: [],
         }
     }
-
+    
     handleLocation = (e) => {
         const location = e.target.value;
         //sessionStorage.setState('location', location);
 
         axios({
-            url: `http://localhost:5500/rest/${location}`,
+            url: `${BASE_URL}/rest/${location}`,
             method: 'get',
             headers: { 'Content-Type': 'application/JSON'}
         })
@@ -41,15 +42,15 @@ class Banner extends React.Component{
     showSuggestion = () => {
         const { inputText, suggestion } = this.state;
 
-        if(suggestion.length == 0 && inputText == undefined){
+        if(suggestion.length === 0 && inputText === undefined){
             return null;
         }
 
-        if(suggestion.length > 0 && inputText == ''){
+        if(suggestion.length > 0 && inputText === ''){
             return null;
         }
 
-        if(suggestion.length == 0 && inputText){
+        if(suggestion.length === 0 && inputText){
             return (
                 <li>No Results Found !!</li>
             )
@@ -58,7 +59,7 @@ class Banner extends React.Component{
         return(
             suggestion.map((item, index) => (
                 <li key={index} className="suggList" onClick={() => this.selectRestaurant(item._id)}>
-                    <img src={ item.thumb } className="suggImg" />         {/* restaurant image */}
+                    <img src={ item.thumb } className="suggImg" alt=" " />         {/* restaurant image */}
                     <span className="suggName">{item.name}</span>   {/* restaurant name */}
                     <span className="suggLoc">{item.address}</span>   {/* restaurant Location */}
 
@@ -89,8 +90,8 @@ class Banner extends React.Component{
                         </div> */}
                         <div class="row mt-5">
                             <div class="col d-flex justify-content-center">
-                                <div class="text-danger circle">
-                                    <h2 class="logo">e!</h2>
+                                <div class="text-danger circle_m">
+                                    <h2 class="logo_m">e!</h2>
                                 </div>
                             </div>
                         </div>

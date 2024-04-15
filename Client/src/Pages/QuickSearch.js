@@ -33,7 +33,7 @@ class QuickSearch extends React.Component{
                                 return(
                                     <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}} onClick={() => this.showFilter(meal._id)}>
                                         <div class="l-box">
-                                            <img src={`./images/${meal.image}`} alt="images_mealtype" class="img-fluid img-qs" />
+                                            <img src={`./images/${meal.image}`} alt="images_mealtype" class="img-fluid img-qs-m" />
                                         </div>
                                         <div class="r-box">
                                             <h4 class="card-title">{meal.name}</h4>

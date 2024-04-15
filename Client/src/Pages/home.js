@@ -17,6 +17,7 @@ class Homepage extends React.Component{
     componentDidMount(){
         // location API
         axios({
+            withCredentials: true,
             url: `${BASE_URL}/location`,
             method: 'get',
             headers: { 'Content-Type': 'application/JSON'}
@@ -28,6 +29,7 @@ class Homepage extends React.Component{
 
         // Mealtype API
         axios({
+            withCredentials: true,
             url: `${BASE_URL}/mealtype`,
             method: 'get',
             headers: { 'Content-Type': 'application/JSON'}

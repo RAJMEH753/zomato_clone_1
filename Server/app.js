@@ -31,6 +31,7 @@ app.use(express.json());        // A body Parser Required to post a data
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors(corsOptions));
+app.options('*', cors());
 app.use('/', route);
 app.use('/api/payment/', paymentRoute);
 app.use('/auth', authRoute);

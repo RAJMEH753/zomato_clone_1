@@ -16,7 +16,8 @@ const corsOptions = {
     origin: process.env.REACT_URL,
     methods: "GET,POST,PUT,DELETE, PATCH",
     credentials: true,
-    optionSuccessStatus: 200
+    optionSuccessStatus: 200,
+    allowedHeaders: "X-Requested-With,content-type, x-token, Access-Control-Allow-Credentials"
 }
 
 dotenv.config();

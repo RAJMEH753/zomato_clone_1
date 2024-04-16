@@ -20,7 +20,7 @@ class Homepage extends React.Component{
             withCredentials: true,
             url: `${BASE_URL}/location`,
             method: 'get',
-            headers: { 'Content-Type': 'application/JSON'}
+            headers: { 'Content-Type': 'application/JSON', "Access-Control-Allow-Credentials": *}
         })
         .then( res => {
             this.setState({ loc: res.data.location })
@@ -32,7 +32,7 @@ class Homepage extends React.Component{
             withCredentials: true,
             url: `${BASE_URL}/mealtype`,
             method: 'get',
-            headers: { 'Content-Type': 'application/JSON'}
+            headers: { 'Content-Type': 'application/JSON', "Access-Control-Allow-Credentials": *}
         })
         .then( res => {
             this.setState({ mealtype: res.data.meal })

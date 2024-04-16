@@ -14,6 +14,7 @@ const passportSetup = require("./Controller/passport");
 
 const corsOptions = {
     origin: process.env.REACT_URL,
+    methods: "GET,POST,PUT,DELETE, PATCH",
     credentials: true,
     optionSuccessStatus: 200
 }

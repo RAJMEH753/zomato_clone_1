@@ -36,7 +36,7 @@ app.use('/api/payment/', paymentRoute);
 app.use('/auth', authRoute);
 
 // DB
-const MongoAtlas = = process.env.MONGO_URL
+const MongoAtlas = process.env.MONGO_URL
 
 mongoose.connect(MongoAtlas, {
     // useNewUrlParser: true,

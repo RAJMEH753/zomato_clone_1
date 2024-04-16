@@ -20,7 +20,7 @@ class Banner extends React.Component{
         axios({
             url: `${BASE_URL}/rest/${location}`,
             method: 'get',
-            headers: { 'Content-Type': 'application/JSON', "Access-Control-Allow-Credentials": *}
+            headers: { 'Content-Type': 'application/JSON', "Access-Control-Allow-Credentials": true}
         })
         .then( res => {
             this.setState({ restaurant: res.data.restaurants })

@@ -89,7 +89,7 @@ class Details extends React.Component{
         this.setState({ menu: items, subtotal: total })
     }
 
-    // Payment
+    // Payment -Razorpay
     initPayment = (data) => {
         const options = {
             key: "rzp_test_UI77aZ9xCX3yQ7",
@@ -113,7 +113,7 @@ class Details extends React.Component{
         rzp.open();
     }
 
-    handlePayment = async() => {
+    razorpayPayment = async() => {
         const { subtotal } = this.state;
 
         try{
@@ -124,6 +124,18 @@ class Details extends React.Component{
 
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    // Payment - Paypal
+    paypalPayment = async() =>{
+        const { subtotal } = this.state;
+
+        try {
+                const response = await axios.post(`${BASE_URL}/api/paypal/pay`, { amount: subtotal });
+                window.location.href = response.data;
+        } catch (error) {
+              console.error('Error initiating payment:', error);
         }
     }
 
@@ -281,7 +293,13 @@ class Details extends React.Component{
                         <textarea type="text" rows="4" placeholder="Enter your address" style={{ width: '100%'}} className="form-control" id="address">
                         </textarea>
 
-                        <button className="btn btn-success" style={{ float: "right", marginTop: "18px" }} onClick={this.handlePayment}>Proceed</button>
+                        <button className="btn btn-outline-primary" style={{ float: "right", marginTop: "18px" }} onClick={this.razorpayPayment}>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg" alt="razorpay" style={{ height: '25px'}} />
+                        </button>
+
+                        <button className="btn btn-primary px-4" style={{ marginTop: "18px" }} onClick={this.paypalPayment}>
+                            <img src="https://www.edigitalagency.com.au/wp-content/uploads/PayPal-logo-white-png-horizontal.png" alt="razorpay" style={{ height: '25px'}} />
+                        </button>
                     </div>
                 </Modal>
 

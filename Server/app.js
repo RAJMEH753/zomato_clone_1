@@ -10,6 +10,7 @@ const PORT = 5500;
 // const HOSTNAME = "localhost";
 const paymentRoute = require("./Controller/payment");
 const authRoute = require("./Controller/auth");
+const paypalRoute = require("./Controller/PayPal/payments");
 const passportSetup = require("./Controller/passport");
 
 const corsOptions = {
@@ -33,7 +34,8 @@ app.use(passport.session());
 app.use(cors(corsOptions));
 app.options('*', cors());
 app.use('/', route);
-app.use('/api/payment/', paymentRoute);
+app.use('/api/payment/', paymentRoute);     // Razorpay Payment Gateway
+app.use('/api/paypal/', paypalRoute);              // Paypal Payment Gateway
 app.use('/auth', authRoute);
 
 // DB

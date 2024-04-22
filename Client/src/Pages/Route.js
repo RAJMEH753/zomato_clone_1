@@ -42,6 +42,9 @@ const Router = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/filter" element={<Filter />} />
                 <Route path="/details" element={<Details />} />
+
+                <Route path="/success" element={<Home payStatus="success" />} />
+                <Route path="/cancel" element={<Home payStatus="fail" />} />
             </Routes>
         </BrowserRouter>
     )

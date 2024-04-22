@@ -76,7 +76,7 @@ class Homepage extends React.Component{
                 
                 {/* Payment Status modal */}
         { console.log(status) }
-                { status === "none" ? 
+                { status === "none" || status === "undefined" ? 
                     this.handleModal('paymentStatusModal', false) 
                     : this.handleModal('paymentStatusModal', true) 
                 }

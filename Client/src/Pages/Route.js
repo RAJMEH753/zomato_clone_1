@@ -39,7 +39,7 @@ const Router = () => {
         <BrowserRouter>
             <Header user = {user} />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home payStatus="none" />} />
                 <Route path="/filter" element={<Filter />} />
                 <Route path="/details" element={<Details />} />
 

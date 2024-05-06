@@ -75,7 +75,7 @@ class Homepage extends React.Component{
                 <QuickSearch mealtypeData = { mealtype } />
                 
                 {/* Payment Status modal */}
-        { console.log(status) }
+        { /*console.log(status)*/ }
                 { status === "none" || status === undefined ? 
                     this.handleModal('paymentStatusModal', false) 
                     : this.handleModal('paymentStatusModal', true) 

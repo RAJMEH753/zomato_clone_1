@@ -1,10 +1,14 @@
 import React from "react";
-import navHook from "./nav";
+/*import navHook from "./nav";*/
 
 class QuickSearch extends React.Component{
 
-    showFilter = (ss) => {
+   /* showFilter = (ss) => {
         this.props.navigate(`/filter?mealtype=${ss}`);
+    } */
+
+     showFilter = (ss) => {
+        this.props.history.push(`/filter?mealtype=${ss}`);
     }
 
     render(){
@@ -52,4 +56,4 @@ class QuickSearch extends React.Component{
     }
 }
 
-export default navHook(QuickSearch);
+export default QuickSearch;

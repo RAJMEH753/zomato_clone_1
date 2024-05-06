@@ -25,7 +25,8 @@ class Homepage extends React.Component{
         super();
         this.state ={
             loc: [],
-            mealtype: []
+            mealtype: [],
+            paymentStatusModal: false
         }
     }
 

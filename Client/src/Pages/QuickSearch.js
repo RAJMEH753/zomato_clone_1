@@ -54,4 +54,4 @@ class QuickSearch extends React.Component{
     }
 }
 
-export default QuickSearch;
+export default navHook(QuickSearch);

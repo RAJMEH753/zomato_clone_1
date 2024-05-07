@@ -39,7 +39,7 @@ class Homepage extends React.Component{
             headers: { 'Content-Type': 'application/JSON', "Access-Control-Allow-Credentials": true}
         })
         .then( res => {
-            this.setState({ loc: res.data.location })
+            this.setState({ loc: res.data.location });
         })
         .catch((err => console.log(err)))
 
@@ -51,7 +51,7 @@ class Homepage extends React.Component{
             headers: { 'Content-Type': 'application/JSON', "Access-Control-Allow-Credentials": true}
         })
         .then( res => {
-            this.setState({ mealtype: res.data.meal })
+            this.setState({ mealtype: res.data.meal });
         })
         .catch((err => console.log(err)))
     }

@@ -60,7 +60,7 @@ class Homepage extends React.Component{
     handleModal = (state, value) => {
        
         this.setState({ [state]: value });
-    }
+    };
 
     render(){
         const { loc, mealtype, paymentStatusModal } = this.state;

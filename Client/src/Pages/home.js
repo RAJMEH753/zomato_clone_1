@@ -57,9 +57,8 @@ class Homepage extends React.Component{
     }
 
     // For Modal
-    handleModal = (state, value) => {
-       
-        this.setState({ [state]: value });
+    handleModal = (value) => {
+        this.setState({ paymentStatusModal: value });
     };
 
     render(){
@@ -78,8 +77,7 @@ class Homepage extends React.Component{
                 {/* Payment Status modal */}
         { /*console.log(status)*/ }
                 { status === "none" || status === undefined ? 
-                    this.handleModal('paymentStatusModal', false) 
-                    : this.handleModal('paymentStatusModal', true) 
+                    this.handleModal(false) : this.handleModal(true) 
                 }
                 <Modal
                     isOpen={paymentStatusModal}

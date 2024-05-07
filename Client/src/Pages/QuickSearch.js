@@ -31,8 +31,7 @@ class QuickSearch extends React.Component{
                         {
                             mealtypeData?.map((meal) => {
                                 return(
-                                   <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}} onClick={() => this.showFilter(meal._id)}> */
-                                   
+                                   <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}} onClick={() => this.showFilter(meal._id)}>
                                         <div class="l-box">
                                             <img src={`./images/${meal.image}`} alt="images_mealtype" class="img-fluid img-qs-m" />
                                         </div>
@@ -41,7 +40,6 @@ class QuickSearch extends React.Component{
                                             <p class="card-content">{meal.content}</p>
                                         </div>
                                    </div> 
-                                   
                                 )
                             })
                         }

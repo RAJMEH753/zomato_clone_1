@@ -1,16 +1,11 @@
 import React from "react";
-/*import navHook from "./nav";*/
-import { Link } from "react-router-dom";
+import navHook from "./nav";
 
 class QuickSearch extends React.Component{
 
-   /* showFilter = (ss) => {
+    showFilter = (ss) => {
         this.props.navigate(`/filter?mealtype=${ss}`);
     } 
-
-     showFilter = (ss) => {
-        this.props.history.push(`/filter?mealtype=${ss}`);
-    }*/
 
     render(){
         const { mealtypeData } = this.props;
@@ -36,9 +31,8 @@ class QuickSearch extends React.Component{
                         {
                             mealtypeData?.map((meal) => {
                                 return(
-                                   <Link to={`/filter?mealtype=${meal._id}`}>
-                                    /* <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}} onClick={() => this.showFilter(meal._id)}> */
-                                      <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}} >
+                                   <div class="d-flex box mt-4" style={{border: "1px solid greenyellow;"}} onClick={() => this.showFilter(meal._id)}> */
+                                   
                                         <div class="l-box">
                                             <img src={`./images/${meal.image}`} alt="images_mealtype" class="img-fluid img-qs-m" />
                                         </div>
@@ -46,7 +40,8 @@ class QuickSearch extends React.Component{
                                             <h4 class="card-title">{meal.name}</h4>
                                             <p class="card-content">{meal.content}</p>
                                         </div>
-                                    </div> </Link>
+                                   </div> 
+                                   
                                 )
                             })
                         }
